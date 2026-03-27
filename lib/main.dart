@@ -31,9 +31,23 @@ class MineSweeperScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Buscaminas'),
         ),
-        body: Center(
-          child: Text('Hola, Bienvenido a Buscaminasaaaaaa!'),
+        body: SafeArea(
+          child: Column(
+            children: [
+             Container(
+              height:60 ,
+              color: Colors.grey[300],
+              child: const Center(
+                child: Text("Status: 349 segundos | Minas: 10 | Cuadros: 56",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),),
+                ),
+              ),
+              Divider(height: 1,),
+              Expanded(child: Text("Aquí va el tablero de juego",style: TextStyle(fontSize: 18, color: Colors.grey),))
+            ],
+          ),
         ),
+
       
     );
   }
