@@ -15,9 +15,26 @@ class MyApp extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.red),
       ),
-      home: const Text("Hello World"),
+      home: const MineSweeperScreen(),
     );
+    
   }
 }
 
 
+class MineSweeperScreen extends StatelessWidget {
+  const MineSweeperScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Buscaminas'),
+        ),
+        body: Center(
+          child: Text('Hola, Bienvenido a Buscaminasaaaaaa!'),
+        ),
+      
+    );
+  }
+}
