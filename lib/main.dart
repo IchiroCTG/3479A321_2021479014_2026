@@ -43,7 +43,7 @@ class MineSweeperScreen extends StatelessWidget {
                 ),
               ),
               Divider(height: 1,),
-              Expanded(child: Text("Aquí va el tablero de juego",style: TextStyle(fontSize: 18, color: Colors.grey),))
+              Expanded(child: _gameBoard()),
             ],
           ),
         ),
@@ -51,4 +51,32 @@ class MineSweeperScreen extends StatelessWidget {
       
     );
   }
+}
+
+Widget _gameBoard(){
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 8,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+          ),
+          itemCount: 64,
+          itemBuilder: (context, index){
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[400],
+                border: Border.all(color: Colors.grey[600]!, width: 1.5),
+              )
+            );
+          }
+        ),
+      )
+    )
+  );
 }
