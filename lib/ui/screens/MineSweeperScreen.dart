@@ -7,11 +7,13 @@ class MineSweeperScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          
           title: const Text('Buscaminas'),
         ),
         body: SafeArea(
           child: Column(
             children: [
+            Image.asset('assets/images/min.png', height: 100, width: 100,),
              Container(
               height:60 ,
               color: Colors.grey[300],

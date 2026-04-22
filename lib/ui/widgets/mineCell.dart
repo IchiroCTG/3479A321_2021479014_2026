@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+
 class Minecell extends StatelessWidget {
   final int index;
  const  Minecell({ 
@@ -9,11 +11,14 @@ class Minecell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // Obtener el tema actual para usar sus colores y estilos
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[400],
-        border: Border.all(color: Colors.grey[600]!, width: 1.5),
-      )
+        color: theme.colorScheme.secondary, // Usa el color de fondo del tema 
+        border: Border.all(color: theme.colorScheme.outline, width: 1.5),
+      ),
+      child: Center( child: Image.asset( 'assets/icons/icono.png', 
+                    width: 64, height: 64, fit: BoxFit.contain, ), ),
     );
   }
 }
