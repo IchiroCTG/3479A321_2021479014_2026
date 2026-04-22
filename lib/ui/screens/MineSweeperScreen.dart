@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/HistoryScreen.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/MenuScreen.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/widgets/mineCell.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/AboutMe.dart';
 class MineSweeperScreen extends StatelessWidget {
@@ -11,7 +13,14 @@ class MineSweeperScreen extends StatelessWidget {
           
           title: const Text('Buscaminas'),
           actions: [ IconButton( icon: const Icon(Icons.person_outline), onPressed: () { // Aquí podrías navegar a una pantalla de "Acerca de" 
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutmePage())); }, ), ]
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutmePage())); }, ), 
+          
+          IconButton( icon: const Icon(Icons.menu), onPressed: () { // Aquí podrías navegar a una pantalla de menú
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuScreen())); }, ),
+
+          IconButton( icon: const Icon(Icons.history), onPressed: () { // Aquí podrías navegar a una pantalla de menú
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const HistoryScreen())); }, ),
+        ],
         ),
         body: SafeArea(
           child: Column(
