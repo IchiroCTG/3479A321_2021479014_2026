@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/MineSweeperScreen.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/MenuScreen.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/HistoryScreen.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/AboutMe.dart';
 var logger = Logger();
 
 void main() {
@@ -24,7 +27,13 @@ class MyApp extends StatelessWidget {
           secondary: Colors.red ), scaffoldBackgroundColor: const Color.fromARGB(255, 0, 255, 234), // Fondo por defecto de todas las pantallas 
           textTheme: const TextTheme( bodyMedium: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500), ), 
           useMaterial3: true),
-      home: const MineSweeperScreen(),
+      initialRoute: '/menu',
+      routes: {
+        '/menu': (context) => const MenuScreen(),
+        '/game': (context) => const MineSweeperScreen(),
+        '/history': (context) => const HistoryScreen(),
+        '/about': (context) => const AboutmePage(),
+      },
     );
     
   }

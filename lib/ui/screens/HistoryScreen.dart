@@ -9,10 +9,6 @@ class HistoryScreen extends StatelessWidget {
       body: const Center(
         child: Text('Aquí irá la lista de partidas.'), 
       ),
-      floatingActionButton: ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text('Go Back'),
-        ),
     );
   } 
 }
