@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/widgets/mineCell.dart';
+import 'package:flutter_labs_dispmoviles_2026/ui/screens/AboutMe.dart';
 class MineSweeperScreen extends StatelessWidget {
   const MineSweeperScreen({super.key});
 
@@ -9,6 +10,8 @@ class MineSweeperScreen extends StatelessWidget {
         appBar: AppBar(
           
           title: const Text('Buscaminas'),
+          actions: [ IconButton( icon: const Icon(Icons.person_outline), onPressed: () { // Aquí podrías navegar a una pantalla de "Acerca de" 
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutmePage())); }, ), ]
         ),
         body: SafeArea(
           child: Column(
