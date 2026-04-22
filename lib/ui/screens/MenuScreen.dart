@@ -15,7 +15,7 @@ class MenuScreen extends StatelessWidget {
           onPressed: () => Navigator.pushNamed(context, '/history'),
           child: Text('Historial'),
         ),
-        ElevatedButton(onPressed: ()=> Navigator.pushNamed(context, '/game'), 
+        ElevatedButton(onPressed: ()=> Navigator.pushNamed(context, '/game',arguments: {'difficulty': 'easy', 'gridSize': 8}), 
         child: Text('Juego')),
         ElevatedButton(onPressed: ()=> Navigator.pushNamed(context, '/about'), 
         child: Text('Acerca de'))

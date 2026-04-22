@@ -5,6 +5,10 @@ class MineSweeperScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?; // Definimos valores por defecto (Fallback) en caso de que lleguen nulos 
+    final String difficulty = args?['difficulty'] ?? 'Desconocida';
+    final int gridSize = args?['gridSize'] ?? 8; //
+
     return Scaffold(
         appBar: AppBar(  
           title: const Text('Buscaminas'),
@@ -23,6 +27,7 @@ class MineSweeperScreen extends StatelessWidget {
               ),
               Divider(height: 1,),
               Expanded(child: _gameBoard()),
+              Text('Dificultad: $difficulty | Tamaño de cuadrícula: ${gridSize}x${gridSize}', style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),),
             ],
           ),
         ),
