@@ -1,7 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_labs_dispmoviles_2026/models/cell_model.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/widgets/mineCell.dart';
-class MineSweeperScreen extends StatelessWidget {
+import 'package:logger/web.dart';
+class MineSweeperScreen extends StatefulWidget {
+  
   const MineSweeperScreen({super.key});
+  @override
+  State<MineSweeperScreen> createState() => _MineSweeperScreenState();
+}
+
+class _MineSweeperScreenState extends State<MineSweeperScreen>{  
+  
+  late List<CellModel> _cells;
+  final logger = Logger();
+  
+  @override
+  void initState() {
+    _cells = List.generate(64, (i) => CellModel(index: i)); 
+    logger.i('Lifecycle: initState() - El estado ha sido creado.');
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    logger.i('Lifecycle: didChangeDependencies() - Contexto listo o dependencias cambiadas.');
+  }
+
+  @override
+  void didUpdateWidget(covariant MineSweeperScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    logger.w('Lifecycle: didUpdateWidget() - La configuración del widget ha cambiado.');
+  }
+  
+  @override void dispose() { 
+    logger.e('Lifecycle: dispose() - El estado se destruye. Liberando memoria.'); 
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
