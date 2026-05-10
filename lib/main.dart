@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_labs_dispmoviles_2026/models/game_view_model.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/MineSweeperScreen.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/MenuScreen.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/HistoryScreen.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/screens/AboutMe.dart';
+import 'package:provider/provider.dart';
 var logger = Logger();
 
 void main() {
@@ -30,7 +32,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/menu',
       routes: {
         '/menu': (context) => const MenuScreen(),
-        '/game': (context) => const MineSweeperScreen(),
+        '/game': (context) => ChangeNotifierProvider(create: (context) => GameViewModel() ,
+        child: const MineSweeperScreen(),),
         '/history': (context) => const HistoryScreen(),
         '/about': (context) => const AboutmePage(),
       },

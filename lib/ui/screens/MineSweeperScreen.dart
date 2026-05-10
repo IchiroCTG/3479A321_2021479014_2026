@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_labs_dispmoviles_2026/models/cell_model.dart';
+import 'package:flutter_labs_dispmoviles_2026/models/game_view_model.dart';
 import 'package:flutter_labs_dispmoviles_2026/ui/widgets/mineCell.dart';
 import 'package:logger/web.dart';
+import 'package:provider/provider.dart';
 class MineSweeperScreen extends StatefulWidget {
   
   const MineSweeperScreen({super.key});
   @override
+
   State<MineSweeperScreen> createState() => _MineSweeperScreenState();
 }
 
 class _MineSweeperScreenState extends State<MineSweeperScreen>{  
   
-  late List<CellModel> _cells;
   final logger = Logger();
   
   @override
   void initState() {
-    _cells = List.generate(64, (i) => CellModel(index: i)); 
+    super.initState();
     logger.i('Lifecycle: initState() - El estado ha sido creado.');
   }
   @override
@@ -36,15 +37,8 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
     super.dispose();
   }
 
-  void _onCellTapped(int index) { 
-    setState(() 
-      { 
-        _cells[index].isRevealed = true; // Actualizamos el dato 
-      }
-    );
-  }
 
-  Widget _gameBoard(){
+  Widget _gameBoard(GameViewModel viewModel){
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
@@ -59,8 +53,8 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
           ),
           itemCount: 64,
           itemBuilder: (context, index){
-            return Minecell(cell: _cells[index],
-                  onTap: () => _onCellTapped(index),);
+            return Minecell(cell: viewModel.cells[index],
+                  onTap: () => viewModel.revealCell(index),);
           }
         ),
       )
@@ -73,7 +67,7 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
     final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?; // Definimos valores por defecto (Fallback) en caso de que lleguen nulos 
     final String difficulty = args?['difficulty'] ?? 'Desconocida';
     final int gridSize = args?['gridSize'] ?? 8; //
-
+    final viewModel = context.watch<GameViewModel>();
     return Scaffold(
         appBar: AppBar(  
           title: const Text('Buscaminas'),
@@ -91,7 +85,7 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
                 ),
               ),
               Divider(height: 1,),
-              Expanded(child: _gameBoard()),
+              Expanded(child: _gameBoard(viewModel)),
               Text('Dificultad: $difficulty | Tamaño de cuadrícula: ${gridSize}x${gridSize}', style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),),
             ],
           ),
