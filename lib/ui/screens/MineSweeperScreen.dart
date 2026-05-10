@@ -36,6 +36,38 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
     super.dispose();
   }
 
+  void _onCellTapped(int index) { 
+    setState(() 
+      { 
+        _cells[index].isRevealed = true; // Actualizamos el dato 
+      }
+    );
+  }
+
+  Widget _gameBoard(){
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 8,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+          ),
+          itemCount: 64,
+          itemBuilder: (context, index){
+            return Minecell(cell: _cells[index],
+                  onTap: () => _onCellTapped(index),);
+          }
+        ),
+      )
+    )
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?; // Definimos valores por defecto (Fallback) en caso de que lleguen nulos 
@@ -68,27 +100,7 @@ class _MineSweeperScreenState extends State<MineSweeperScreen>{
       
     );
   }
+
+  
 }
 
-Widget _gameBoard(){
-  return Center(
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 8,
-            mainAxisSpacing: 2,
-            crossAxisSpacing: 2,
-          ),
-          itemCount: 64,
-          itemBuilder: (context, index){
-            return Minecell(index: index);
-          }
-        ),
-      )
-    )
-  );
-}
